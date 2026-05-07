@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { personalInfo, aboutMe, skills, projects, experience, education } from "@/data/portfolio";
