@@ -1,0 +1,60 @@
+# How I Built an AI Model for Early PCOS Detection
+
+May 15, 2026 • AI / ML • 5 min read
+
+Polycystic Ovary Syndrome (PCOS) affects millions of women worldwide, yet early and accurate diagnosis remains a significant medical challenge. The primary diagnostic tool—ultrasound imaging—often yields results that are highly subjective, varying greatly depending on the sonographer's experience and the quality of the equipment. 
+
+In my latest research project, I set out to determine if we could build a more objective, consistent baseline for diagnosis using computer vision and deep learning. Here's a technical breakdown of how I approached the problem.
+
+## The Architecture
+
+The pipeline consists of three distinct phases:
+
+1. **Synthetic Data Generation (GANs)**
+2. **Semantic Segmentation (U-Net)**
+3. **Object Detection (YOLOv8)**
+
+### Phase 1: Overcoming the Data Drought
+
+Medical datasets are notoriously difficult to acquire due to privacy concerns. To solve the problem of class imbalance and scarce training data, I utilized Generative Adversarial Networks (GANs). 
+
+By training a custom GAN on a small verified dataset of PCOS-positive ultrasounds, I was able to synthesize thousands of realistic variations. 
+
+```python
+# A simplified look at the Generator architecture
+class UltrasoundGenerator(nn.Module):
+    def __init__(self):
+        super(UltrasoundGenerator, self).__init__()
+        self.main = nn.Sequential(
+            nn.ConvTranspose2d(nz, ngf * 8, 4, 1, 0, bias=False),
+            nn.BatchNorm2d(ngf * 8),
+            nn.ReLU(True),
+            # ... additional layers ...
+            nn.ConvTranspose2d(ngf, nc, 4, 2, 1, bias=False),
+            nn.Tanh()
+        )
+```
+
+### Phase 2: Segmentation with U-Net
+
+Once I had a robust dataset, the next step was to isolate the region of interest. Ultrasound images contain a lot of noise (speckle). Feeding the entire image into a classifier would likely result in the model learning irrelevant artifacts.
+
+I deployed a U-Net architecture to create a segmentation mask that specifically isolates the ovarian boundaries.
+
+### Phase 3: YOLOv8 for Cyst Detection
+
+With the ovary isolated, I used YOLOv8 to detect and count the number of follicles (cysts). A follicle count greater than 12 in a single ovary is a strong clinical indicator of PCOS. 
+
+YOLOv8 proved exceptionally fast, allowing the entire pipeline to run in near real-time—a crucial requirement if this system were ever deployed in a live clinical setting alongside an ultrasound machine.
+
+## Challenges and Learnings
+
+The biggest challenge was **interpretability**. Doctors cannot trust a "black box" model that simply outputs a probability score. To solve this, I integrated Grad-CAM (Gradient-weighted Class Activation Mapping). 
+
+Grad-CAM generates a heatmap overlay on the original ultrasound, showing the doctor exactly *where* the model is looking when it makes its prediction. If the model focuses on the cysts, the doctor can trust the result. If it focuses on a random shadow, the doctor knows to disregard it.
+
+## Conclusion
+
+AI will not replace doctors, but doctors who use AI will replace those who don't. By providing a consistent, objective second opinion, models like this can significantly reduce diagnostic variance in conditions like PCOS.
+
+*Want to dive deeper into the code? Check out the full repository on my GitHub.*
