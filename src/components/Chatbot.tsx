@@ -23,7 +23,7 @@ export default function Chatbot() {
         content: "Hi! I'm Abhinav's AI assistant. Feel free to ask me anything about his skills, projects, or experience!",
       },
     ],
-  });
+  }) as any;
 
   // Auto-scroll to bottom of messages
   useEffect(() => {
