@@ -28,9 +28,9 @@ export const personalInfo = {
 };
 
 export const aboutMe = {
-  story: `I'm a curious builder who thrives at the intersection of artificial intelligence, cybersecurity, and software engineering. My journey in tech began with an insatiable curiosity about how things work — from low-level network packets to high-level neural architectures.
+  story: `I'm a curious builder who thrives at the intersection of artificial intelligence, cybersecurity, and software engineering. My journey in tech began with an insatiable curiosity about how things work  from low-level network packets to high-level neural architectures.
 
-Currently pursuing B.Tech in Computer Science & Business Systems at Amity University, I've channeled my passion into building real-world AI solutions — from medical imaging systems that detect PCOS using deep learning, to financial intelligence platforms processing real-time market data across equities, crypto, and forex.
+Currently pursuing B.Tech in Computer Science & Business Systems at Amity University, I've channeled my passion into building real-world AI solutions  from medical imaging systems that detect PCOS using deep learning, to financial intelligence platforms processing real-time market data across equities, crypto, and forex.
 
 As the President of PlayStorm, Amity's premier gaming club, I've learned that great technology is nothing without great leadership. I lead 100+ members, organize large-scale tournaments, and build partnerships that push boundaries.
 
@@ -505,7 +505,7 @@ export const testimonials = [
     name: "Rahul Mehta",
     role: "Tech Lead, Marksman Technologies",
     content:
-      "During his internship, Abhinav's initiative and technical prowess were exceptional. He didn't just complete tasks — he identified workflow bottlenecks and automated them, improving our team's efficiency by 30%.",
+      "During his internship, Abhinav's initiative and technical prowess were exceptional. He didn't just complete tasks  he identified workflow bottlenecks and automated them, improving our team's efficiency by 30%.",
     avatar: "RM",
   },
   {
