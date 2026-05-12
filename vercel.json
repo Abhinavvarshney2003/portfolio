@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/playstorm",
+      "destination": "https://playstorm-dashboard.vercel.app/playstorm"
+    },
+    {
+      "source": "/playstorm/:path*",
+      "destination": "https://playstorm-dashboard.vercel.app/playstorm/:path*"
+    }
+  ]
+}
