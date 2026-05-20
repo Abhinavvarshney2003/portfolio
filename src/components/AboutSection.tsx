@@ -87,7 +87,7 @@ export default function AboutSection() {
             {/* Quick stats */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: "6+", label: "Projects Built" },
+                { value: "15", label: "Projects Built" },
                 { value: "2", label: "Internships" },
                 { value: "10+", label: "Certifications" },
                 { value: "100+", label: "Members Led" },
